@@ -1,11 +1,12 @@
-# Coding Club Institute
+# Adventura Travel Agency
 
-You can visit now, [Live Site link](https://hasan-assignment-9.netlify.app).
+You can visit now, [Live Site link](https://adventura-5a2d2.web.app/home/).
 
-## Technology I used to build this project:
+## In this travel and tourism project:
 
-- Html
-- jsx
-- js
-- react
-- css
+    -> Explore tourist places. <br>
+    -> Know about that places in a nutshell.
+    -> You Can Book Your Desired Package With Few Clicks.
+    -> You can know about this tourism guides
+    -> Contact with us if You need to know anything
+
