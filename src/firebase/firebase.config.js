@@ -1,11 +1,9 @@
 const firebaseConfig = {
-  apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-  authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN,
-  projectId: process.env.REACT_APP_FIREBASE_PROJECT_ID,
-  storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-  messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-  appId: process.env.REACT_APP_FIREBASE_APP_ID,
+  apiKey: "AIzaSyBVSQwSSLU5RGj7s-YGSLy__KML78jIZHQ",
+  authDomain: "fooddelivery-edf73.firebaseapp.com",
+  projectId: "fooddelivery-edf73",
+  storageBucket: "fooddelivery-edf73.appspot.com",
+  messagingSenderId: "832775461427",
+  appId: "1:832775461427:web:38fc6f28aba16649c46146"
 };
-
 export default firebaseConfig;
-

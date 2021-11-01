@@ -1,65 +1,83 @@
-import React from "react";
-import { Card, Button, Col, Row } from "react-bootstrap";
-import Rating from "react-rating";
-import { library } from "@fortawesome/fontawesome-svg-core";
-import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
 import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import React from "react";
+import { Card, Col, Row } from "react-bootstrap";
+import Rating from "react-rating";
 import Zoom from "react-reveal/Zoom";
+import { NavLink, useHistory } from "react-router-dom";
 import useAuth from "../../hooks/useAuth.js";
-import { NavLink } from "react-router-dom";
 
-library.add(fullStar, emptyStar);
+const Course = ({ course }) => {
+  const history = useHistory();
+  const { _id, img, title, desc, price, rating, ratingCount } = course;
 
-function Course(props) {
-  const { key, img, title, desc, price, rating, ratingCount } = props.course;
-  const { addToCart } = useAuth();
+  const { addToCart, AllContexts } = useAuth();
+  const { user } = AllContexts;
+  const { uid } = user;
   return (
-    <Col className="my-3" md={4}
-    // style={{ borderRadius: "100px" }}
-    >
+    <Col sm={12} md={6} lg={4}>
       <Zoom>
-        <Card style={{ minHeight: "480px" }}>
-          <Card.Img variant="top" src={img} />
-          <Card.Body>
-            <Card.Title className="fw-bold fs-4">{title}</Card.Title>
-            <Card.Text className="text-muted">{desc}</Card.Text>
-            <p>
-              {" "}
-              <b>Price: {price}$</b>
-            </p>
-            <div className="mb-3">
+        <div className="m-2">
+          <Card className="mx-auto" style={{ width: "21rem" }}>
+            <Card.Img variant="top" style={{ minHeight: "220px" }} src={img} />
+            <Card.Body className="my-1 py-1">
+              <Card.Title>{title.slice(0, 25)}</Card.Title>
+              <Card.Text>{desc.slice(0, 50)}</Card.Text>
+            </Card.Body>
+            <Card.Body className="my-1 py-1">
+              <h4>Price: {price}$</h4>
+            </Card.Body>
+            <Card.Body className="my-1 py-1">
               <Row>
                 <Col>
                   <Rating
-                    readonly
-                    style={{ color: "goldenrod" }}
                     initialRating={rating}
-                    emptySymbol={<FontAwesomeIcon icon={emptyStar} />}
-                    fullSymbol={<FontAwesomeIcon icon={fullStar} />}
-                  />{" "}
-                  {rating}
+                    readonly
+                    emptySymbol={
+                      <FontAwesomeIcon
+                        className="text-warning"
+                        icon={emptyStar}
+                      />
+                    }
+                    fullSymbol={
+                      <FontAwesomeIcon
+                        className="text-warning"
+                        icon={fullStar}
+                      />
+                    }
+                  />
+                  <span>{rating}</span>
                 </Col>
-                <Col>Total Review: {ratingCount}</Col>
+                <Col>Total review {ratingCount}</Col>
               </Row>
-            </div>
-            <div className="d-flex">
-              <NavLink to={`/courses/${key}`} className="w-50 btn btn-info fw-bold text-dark">
+            </Card.Body>
+            <Card.Body className="d-flex">
+              <NavLink
+                to={`/courses/${_id}`}
+                className="btn btn-danger w-100 me-1"
+              >
                 View Details
               </NavLink>
-              <Button
-                onClick={() => addToCart(key)}
-                className="w-50 ms-1 fw-bold text-dark"
-                variant="info"
+
+              <button
+                onClick={() => {
+                  if (uid) {
+                    addToCart(course);
+                  } else {
+                    history.push("/login");
+                  }
+                }}
+                className="btn btn-danger  w-100"
               >
-                Book Now.
-              </Button>
-            </div>
-          </Card.Body>
-        </Card>
+                Add to Cart
+              </button>
+            </Card.Body>
+          </Card>
+        </div>
       </Zoom>
     </Col>
   );
-}
+};
 
 export default Course;

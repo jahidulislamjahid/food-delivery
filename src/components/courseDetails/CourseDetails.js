@@ -1,19 +1,18 @@
+import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Col, Row } from "react-bootstrap";
 import Rating from "react-rating";
 import { useParams } from "react-router-dom";
-import useCourses from "../../hooks/useCourses.js";
-import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
 import useAuth from "../../hooks/useAuth.js";
+import useCourses from "../../hooks/useCourses.js";
 
 const CourseDetails = () => {
   const [courses] = useCourses();
   const { addToCart } = useAuth();
-  console.log(courses);
   const { id } = useParams();
-  const newSelected = courses?.find((course) => course.key === Number(id));
+  const newSelected = courses?.find((course) => course.id === Number(id));
 
   return (
     <div className="my-5">
@@ -43,14 +42,25 @@ const CourseDetails = () => {
 
                 <div className="d-flex">
                   <button
-                    onClick={() => addToCart(newSelected?.key)}
+                    onClick={() => addToCart(newSelected?.id)}
                     className="w-50 ms-1 mt-3 btn btn-primary"
                   >
                     Add to Cart
                   </button>
                 </div>
               </Col>
-
+              <Col>
+                <div className="text-center">
+                  <img
+                    width="120px"
+                    className="rounded-circle"
+                    src={newSelected?.sellerThumb}
+                    alt=""
+                  />
+                  <h4>Seller: {newSelected?.provider}</h4>
+                  <p className="m-0">Web Apps Developer</p>
+                </div>
+              </Col>
             </Row>
           </Col>
         </Col>

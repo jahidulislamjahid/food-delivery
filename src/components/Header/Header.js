@@ -1,122 +1,89 @@
-import "./header.css";
-import logo from "./../../logo.gif";
 import React from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Container, Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { NavLink } from "react-router-dom";
+import { HashLink } from "react-router-hash-link";
 import useAuth from "../../hooks/useAuth.js";
+import HeaderBG from "./../../assets/images/header-bg.jpg";
+import logo from "./../../assets/images/logo.png";
+import "./header.css";
 
 const Header = () => {
-  const { contexts, selectedCourse } = useAuth();
-  const { user, logOut } = contexts;
-  const active = {
-    color: "#ff136f",
-    borderBottom: "2px solid #ff136f",
-  };
-  const navStyle = {
-    textDecoration: "none",
-    margin: "0 8px",
-    color: "white",
-    fontSize: "17px",
-    fontWeight: "bold",
-    textTransform: "Uppercase",
-  };
+  const { AllContexts } = useAuth();
+  const { user, logOut } = AllContexts;
+  const { displayName, photoURL, email } = user;
   return (
-    <div className="sticky-top">
-      <Navbar className="bg-black"
-
+    <div className="mb-4">
+      <Navbar
+        fixed="top"
+        style={{ background: `url(${HeaderBG})` }}
         expand="lg"
       >
-        <NavLink
-          className="hoverStyle ms-3 text-decoration-none sm-mb-3"
-          to="home"
-        >
-          <Navbar.Brand className="navBarBrand">
-            <img width="64px" src={logo} alt="" />{" "}
-            <span className="fw-bold text-white fs-1">Adventura</span>
+        <Container>
+          <Navbar.Brand as={NavLink} className="text-black" to="/home">
+            <img width="150px" src={logo} alt="Logo" />
           </Navbar.Brand>
-        </NavLink>
-        <Navbar.Toggle aria-controls="basic-navbar-nav" />
-        <Navbar.Collapse id="basic-navbar-nav">
-          <Nav className="ms-auto align-items-center">
-            <NavLink
-              className="hoverStyle"
-              style={navStyle}
-              activeStyle={active}
-              to="/home"
-            >
-              Home
-            </NavLink>
-            <NavLink
-              className="hoverStyle"
-              style={navStyle}
-              activeStyle={active}
-              to="/about"
-            >
-              About
-            </NavLink>
-            <NavLink
-              className="hoverStyle"
-              style={navStyle}
-              activeStyle={active}
-              to="/courses"
-            >
-              Tour Plans
-            </NavLink>
-            <NavLink
-              className="hoverStyle"
-              style={navStyle}
-              activeStyle={active}
-              to="/contact"
-            >
-              Contact
-            </NavLink>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="ms-auto align-items-center text-black fw-bold">
+              <Nav.Link as={NavLink} to="/home">
+                Home
+              </Nav.Link>
 
-            {user.displayName ? (
-              <div>
-                <NavDropdown
-                  title={
-                    <>
+              <Nav.Link as={NavLink} to="/services">
+                Services
+              </Nav.Link>
+              <Nav.Link as={HashLink} to="/home#feature">
+                More Services
+              </Nav.Link>
+              <Nav.Link as={NavLink} to="/about">
+                About
+              </Nav.Link>
+
+              <Nav.Link as={NavLink} to="/contact">
+                Contact
+              </Nav.Link>
+
+              {!displayName ? (
+                <>
+                  <Nav.Link as={NavLink} to="/signup">
+                    Sign Up
+                  </Nav.Link>
+
+                  <Nav.Link as={NavLink} to="/login">
+                    Log in
+                  </Nav.Link>
+                </>
+              ) : (
+                <>
+                  <Nav.Link as={HashLink} to="/dashboard">
+                    Dashboard
+                  </Nav.Link>
+
+                  <NavDropdown
+                    title={
                       <img
-                        style={{ width: "45px", borderRadius: "50%" }}
-                        src={user.photoURL}
-                        alt="profile"
+                        style={{
+                          width: "45px",
+                          borderRadius: "50%",
+                        }}
+                        src={photoURL}
+                        alt=""
                       />
-                    </>
-                  }
-                >
-                  <div className="text-center">
-                    <p>{user.displayName}</p>
-                    <p>{user.email}</p>
+                    }
+                  >
                     <div className="text-center">
-                      <button onClick={logOut} className="btn btn-primary">
-                        Log Out
+                      <h6>{displayName}</h6>
+                      <p className="m-0 mb-2">{email}</p>
+                      <button onClick={logOut} className="btn btn-danger">
+                        Sign Out
                       </button>
                     </div>
-                  </div>
-                </NavDropdown>
-              </div>
-            ) : (
-              <>
-                <NavLink
-                  className="hoverStyle"
-                  style={navStyle}
-                  activeStyle={active}
-                  to="/login"
-                >
-                  Login
-                </NavLink>
-                <NavLink
-                  className="me-4 hoverStyle"
-                  style={navStyle}
-                  activeStyle={active}
-                  to="/signup"
-                >
-                  Sign up
-                </NavLink>
-              </>
-            )}
-          </Nav>
-        </Navbar.Collapse>
+                  </NavDropdown>
+                </>
+              )}
+            </Nav>
+          </Navbar.Collapse>
+        </Container>
       </Navbar>
     </div>
   );

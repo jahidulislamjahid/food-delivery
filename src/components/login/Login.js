@@ -2,6 +2,7 @@ import React from "react";
 import { Col, Form, FormControl, InputGroup, Row } from "react-bootstrap";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEnvelope, faLock } from "@fortawesome/free-solid-svg-icons";
+import facebook from "../../assets/images/facebook.png";
 import google from "../../assets/images/google.png";
 import github from "../../assets/images/github.png";
 import { NavLink, useLocation, useHistory } from "react-router-dom";
@@ -12,12 +13,14 @@ const Login = () => {
   const {
     signInWithEmail,
     signInWithGoogle,
+    signInWithFacebook,
     signInWithGithub,
     getPassword,
     getEmail,
     setError,
     setUser,
     error,
+    setLoading,
   } = contexts;
   const location = useLocation();
   const history = useHistory();
@@ -97,6 +100,9 @@ const Login = () => {
           className="btn"
         >
           <img src={google} width="46px" alt="google-icon" />
+        </button>
+        <button onClick={signInWithFacebook} className="btn">
+          <img width="50px" src={facebook} alt="facebook-icon" />
         </button>
         <button className="btn">
           <img

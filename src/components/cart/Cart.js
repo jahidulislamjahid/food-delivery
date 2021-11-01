@@ -1,12 +1,11 @@
-import "./Cart.css";
+import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
+import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Rating from "react-rating";
-import useAuth from "../../hooks/useAuth.js";
-import { faStar as fullStar } from "@fortawesome/free-solid-svg-icons";
-import { faStar as emptyStar } from "@fortawesome/free-regular-svg-icons";
 import { NavLink } from "react-router-dom";
+import useAuth from "../../hooks/useAuth.js";
 
 const Cart = () => {
   const { selectedCourse, setSelectedCourse, removeItem } = useAuth();
@@ -53,14 +52,14 @@ const Cart = () => {
                           </Col>
                           <Col className="d-flex align-items-center">
                             <NavLink
-                              to={`/courses/${course.key}`}
+                              to={`/courses/${course.id}`}
                               className="w-50 btn py-2 btn-primary"
                             >
                               View Details
                             </NavLink>
                             <button
                               onClick={() => {
-                                removeItem(course.key);
+                                removeItem(course.id);
                               }}
                               className="btn py-2 ms-1 w-50 btn-primary"
                             >

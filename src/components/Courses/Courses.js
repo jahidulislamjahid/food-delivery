@@ -1,9 +1,9 @@
 import React from "react";
 import { Container, Row } from "react-bootstrap";
+import Bounce from "react-reveal/Bounce";
+import useCourses from "../../hooks/useCourses.js";
 import Course from "../course/Course.js";
 import bgImage from "./../../assets/images/sectionBg.png";
-import Zoom from "react-reveal/Zoom";
-import useCourses from "../../hooks/useCourses.js";
 
 const Courses = () => {
   const [courses] = useCourses();
@@ -12,17 +12,18 @@ const Courses = () => {
       style={{ background: `url(${bgImage})`, backgroundAttachment: "fixed" }}
     >
       <Container className="py-5">
-        <Zoom right cascade>
-          <h2 className="text-center text-white mb-0">All Our Tour PLans Made Especially for You.</h2>
-        </Zoom>
-        <Zoom left cascade>
+        <Bounce left cascade>
+          <h2 className="text-center text-white mb-0">Our All Courses</h2>
+        </Bounce>
+        <Bounce right cascade>
           <p className="my-4 mt-2 text-center text-muted fs-5">
-            Lets Roam Around The World Selecting Our Hand Picked Packages. Pick A packages Click The Book Button And Get Bonuses.
+            Learn exciting technologies from web development, design, game
+            development and more!
           </p>
-        </Zoom>
+        </Bounce>
         <Row>
           {courses?.map((course) => (
-            <Course course={course} key={course.key}></Course>
+            <Course course={course} id={course.id}></Course>
           ))}
         </Row>
       </Container>
