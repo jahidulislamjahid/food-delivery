@@ -1,8 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
-import Footer from "./components/footer/Footer.js";
-import Header from "./components/header/Header.js";
+import Course from "./components/course/Course";
+import Footer from "./components/Footer/Footer.js";
+import Header from "./components/Header/Header.js";
 import AuthProvider from "./contexts/AuthProvider.js";
 import About from "./pages/About.js";
 import Contact from "./pages/Contact.js";
@@ -63,6 +64,7 @@ function App() {
               <Login></Login>
               <Footer></Footer>
             </Route>
+            
 
             <Route path="/signup">
               <Header> </Header>
@@ -76,8 +78,7 @@ function App() {
               <Footer></Footer>
             </Route>
 
-            <Route path="/services/:id">
-              <Header> </Header>
+            <Route path="/courses/:id">
               <Details></Details>
               <Footer></Footer>
             </Route>

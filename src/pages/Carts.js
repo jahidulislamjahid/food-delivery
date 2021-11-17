@@ -8,7 +8,7 @@ import { NavLink, useHistory } from "react-router-dom";
 import useAuth from "../hooks/useAuth.js";
 import useCart from "../hooks/useCart.js";
 
-const Cart = () => {
+const Carts = () => {
   const { selectedCourse, remove, setSelectedCourse, AllContexts } = useAuth();
   const { user } = AllContexts;
   const { uid } = useCart();
@@ -121,4 +121,4 @@ const Cart = () => {
   );
 };
 
-export default Cart;
+export default Carts;

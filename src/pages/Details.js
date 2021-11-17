@@ -5,6 +5,7 @@ import React, { useEffect, useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import Rating from "react-rating";
 import { useHistory, useParams } from "react-router-dom";
+import Header from "../components/Header/Header.js";
 import useAuth from "./../hooks/useAuth.js";
 
 const Details = () => {
@@ -28,7 +29,10 @@ const Details = () => {
   }, [id]);
 
   return (
-    <div className="my-4">
+    <div >
+      <Header> </Header>
+      <br />
+      <br />
       {course?.title ? (
         <Container>
           <Row className="d-flex justify-content-center">

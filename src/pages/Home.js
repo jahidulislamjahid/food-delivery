@@ -3,6 +3,7 @@ import { Container, Row } from "react-bootstrap";
 import Bounce from "react-reveal/Bounce";
 import Slide from "react-reveal/Slide";
 import { NavLink } from "react-router-dom";
+import Coupon from "../components/Coupon/Coupon.js";
 import Course from "../components/course/Course.js";
 import useAuth from "../hooks/useAuth.js";
 import Bg from "./../assets/images/bg.png";
@@ -31,7 +32,7 @@ const Home = () => {
               <Bounce left cascade>
                 <Slide left>
                   <h1 className="text-white ">
-                    "AAHAR" <br /> FOOD DELIVERY & SERVICE
+                    "AHAAR" <br /> FOOD DELIVERY & SERVICE
                   </h1>
                 </Slide>
               </Bounce>
@@ -68,6 +69,11 @@ const Home = () => {
         <div>
           <Courses></Courses>
         </div>
+        
+        <div>
+          <Coupon></Coupon>
+        </div>
+        
         <div className="text-center text-white">
           <Slide left>
             <h1>

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
-import Cart from "./Cart.js";
+import Carts from "./Carts.js";
 import Profile from "./Profile.js";
+import "./Dashboard.css";
 
 const Dashboard = () => {
   const [current, setCurrent] = useState("Profile");
@@ -12,14 +13,14 @@ const Dashboard = () => {
   }
 
   return (
-    <div>
+    <div className="button">
       <div className="d-flex my-2 justify-content-center">
-        <input onClick={profileHandler} type="button" value="Profile" />
-        <input onClick={cartHandler} type="button" value="Cart" />
+        <input className="btn btn-danger w-40" onClick={profileHandler} type="button" value="Profile" />
+        <input className="btn btn-danger  w-40" onClick={cartHandler} type="button" value="My Order" />
       </div>
 
       {(current === "Profile" && <Profile></Profile>) ||
-        (current === "Cart" && <Cart></Cart>)}
+        (current === "My Order" && <Carts></Carts>)}
     </div>
   );
 };

@@ -57,7 +57,7 @@ const Course = ({ course }) => {
                 to={`/courses/${_id}`}
                 className="btn btn-danger w-100 me-1"
               >
-                View Details
+                View Food
               </NavLink>
 
               <button
@@ -70,7 +70,7 @@ const Course = ({ course }) => {
                 }}
                 className="btn btn-danger  w-100"
               >
-                Add to Cart
+                Buy Food
               </button>
             </Card.Body>
           </Card>

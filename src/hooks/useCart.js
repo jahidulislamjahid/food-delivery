@@ -25,7 +25,7 @@ const useCart = () => {
     course.status = "pending";
 
     if (isHave) {
-      alert("course has been selected!");
+      alert("Food has been Added!");
     } else {
       fetch("https://powerful-shore-86352.herokuapp.com/course/add", {
         method: "post",

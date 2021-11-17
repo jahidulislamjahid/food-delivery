@@ -12,7 +12,7 @@ const About = () => {
       <Container>
         <Zoom>
           <h2 className="text-center text-white mb-4">
-            WELCOME TO AHAR FOOD DELIVERY
+            WELCOME TO AHAAR FOOD DELIVERY
           </h2>
         </Zoom>
         <Row>
